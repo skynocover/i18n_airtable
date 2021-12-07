@@ -4,16 +4,14 @@
   "repository": "https://github.com/skynocover/i18n_airtable.git",
   "author": "skynocover <skynocover@Gmail.com>",
   "license": "MIT",
+  "bin": {
+    "i18ncreate": "./src/index.mjs"
+  },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "node src/index.mjs"
   },
   "dependencies": {
     "axios": "^0.24.0",
     "dotenv": "^10.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^16.11.11",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
   }
 }
