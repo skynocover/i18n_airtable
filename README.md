@@ -10,6 +10,12 @@
 
 ![set](./assets/airtable.png)
 
+## install
+
+```
+yarn add -D https://github.com/skynocover/i18n_airtable.git
+```
+
 ### .env
 
 - set .env
@@ -20,7 +26,22 @@ WORKSPACE=apprpRIVLXOL3Tuhp // airtable workspace
 TABLE=i18n // airtable table name
 ```
 
-## run
+### package.json
 
-- run yarn start
-- your config will generate in ./locales directory
+- set package.json
+
+```json
+"scripts": {
+  "translate": "i18ncreate"
+},
+```
+
+## translate
+
+```
+yarn translate
+```
+
+### generate
+
+- config will generate in ./locales/config.json
