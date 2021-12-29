@@ -16,7 +16,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.I18N_AIRT
     `/v0/${process.env.I18N_AIRTABLE_WORKSPACE}/${process.env.I18N_AIRTABLE_TABLE}`,
   );
 
-  const { records } = data;
+  let { records, offset } = data;
 
   let languages = [];
   let config = {};
@@ -32,6 +32,21 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.I18N_AIRT
     const fields = record.fields;
     for (const lng of languages) {
       config[lng]['translation'][fields.key] = fields[lng];
+    }
+  }
+
+  while (!!offset) {
+    const { data } = await axios.get(
+      `/v0/${process.env.I18N_AIRTABLE_WORKSPACE}/${process.env.I18N_AIRTABLE_TABLE}?offset=${offset}`,
+    );
+
+    offset = data.offset;
+
+    for (const record of data.records) {
+      const fields = record.fields;
+      for (const lng of languages) {
+        config[lng]['translation'][fields.key] = fields[lng];
+      }
     }
   }
 
